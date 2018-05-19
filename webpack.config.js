@@ -2,7 +2,7 @@
 
 module.exports = {
     mode: 'development',
-    entry: ['whatwg-fetch','./src/js/GameController.jsx'],
+    entry: ['whatwg-fetch','./src/js/App.jsx'],
     output: {
         path: `${__dirname}/dist/js`,
         filename: 'out.min.js'
