@@ -8,27 +8,39 @@ export default class Player extends React.Component{
             score: 0,
             currentCard: "",
             history: [],
-
+            background : "",
         }
     }
     
     getCard = e => {
-       const card = this.props.getNextCard();
-       this.setState({currentCard : card});
+        let card;
+        if(typeof this.props.getNextCard === "function"){
+           card = this.props.getNextCard();
+        }
 
-       const history = [...this.state.history];
-       history.push(card);
-       this.setState({history});
+        this.setState({currentCard : card});
+        const history = [...this.state.history];
 
-       const value = this.props.cardValues[`${card}`];
-       this.setState({score : this.state.score + value});
+        history.push(card);
+        this.setState({history});
+
+        const value = this.props.cardValues[`${card}`];
+        this.setState({score : this.state.score + value});
+
+        this.updateBackground(`${card}`);
     };
 
+    updateBackground(val){
+        this.setState({background : this.props.heartsBackgrounds[val]});
+    }
+
     render(){
+        const style = {backgroundSize: "contain", backgroundImage: this.state.background, height: 300, width: 200, backgroundRepeat: "no-repeat"};
         return (
             <div className="player">
                 <button onClick={this.getCard}>PLAYER</button>
                 <h1>{this.state.currentCard}</h1>
+                <div className="card" style={style}></div>
             </div>
         );
     }

@@ -21,6 +21,22 @@ export default class GameController extends React.Component{
                 "K" : 10,
                 "A" : 11,
             },
+            heartsBackgrounds : {
+                "2" : "url(./assets/imgs/2h.png)",
+                "3" : "url(./assets/imgs/3h.png)",
+                "4" : "url(./assets/imgs/4h.png)",
+                "5" : "url(./assets/imgs/5h.png)",
+                "6" : "url(./assets/imgs/6h.png)",
+                "7" : "url(./assets/imgs/7h.png)",
+                "8" : "url(./assets/imgs/8h.png)",
+                "9" : "url(./assets/imgs/9h.png)",
+                "10" : "url(./assets/imgs/10h.png)",
+                "J" : "url(./assets/imgs/Jh.png)",
+                "Q" : "url(./assets/imgs/Qh.png)",
+                "K" : "url(./assets/imgs/Kh.png)",
+                "A" : "url(./assets/imgs/Ah.png)",
+            },
+
             player: 0,
         }
     }
@@ -75,6 +91,7 @@ export default class GameController extends React.Component{
                 <button onClick={this.getNextCard}>KUTAS</button>
                 <Player getNextCard={this.getNextCard}
                         cardValues={this.state.cardValues}
+                        heartsBackgrounds={this.state.heartsBackgrounds}
                 />
             </section>
         );
