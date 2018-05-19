@@ -40,7 +40,7 @@ export default class Player extends React.Component{
             <div className="player">
                 <button onClick={this.getCard}>PLAYER</button>
                 <h1>{this.state.currentCard}</h1>
-                <div className="card" style={style}></div>
+                <div className="player-card" style={style}/>
             </div>
         );
     }
