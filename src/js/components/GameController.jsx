@@ -52,14 +52,15 @@ export default class GameController extends React.Component{
     // ======================= Initializing starting game state ==================
     startGame= e=>{
         this.generateDeck(100);
-        this.initializePlayer();
         this.initializeScores();
-        this.initializeMessage();
+        this.initializeMessage(this.initializePlayer());
         this.resetPlayers();
     };
 
     initializePlayer(){
-        this.setState({player :  Math.floor(Math.random()*2 +1)});
+        const player =  Math.floor(Math.random()*2 +1);
+        this.setState({player});
+        return player;
     }
 
     initializeScores(){
@@ -69,8 +70,8 @@ export default class GameController extends React.Component{
         });
     }
 
-    initializeMessage(){
-        this.setState({gameMessage : `Start the game: Player ${this.state.player}`});
+    initializeMessage(player){
+        this.setState({gameMessage : `Start the game: Player ${player}`});
     }
     resetPlayers(){
         this.setState({newGame : true});
