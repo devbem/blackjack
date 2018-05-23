@@ -49,15 +49,19 @@ export default class Player extends React.Component{
     }
 
     render(){
-        const style = {backgroundSize: "contain", backgroundImage: this.state.background, height: 300, width: 200, backgroundRepeat: "no-repeat"};
+        const background = {backgroundImage: this.state.background};
         return (
             <div className="player">
                 <button onClick={this.getCard}>PLAYER</button>
                 <PlayerHistory deck={this.props.heartsBackgrounds}
                                history={this.state.history}
+                               score={this.state.score}
+                               id={this.props.id}
                 />
                 <h1>{this.state.currentCard}</h1>
-                <div className="player-card" style={style}/>
+                <div className="player-card">
+                    <div className="card" style={background}/>
+                </div>
             </div>
         );
     }

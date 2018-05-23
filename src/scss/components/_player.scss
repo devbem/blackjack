@@ -1,8 +1,50 @@
 .player{
-
+  width: 450px;
+  .player-card{
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 2px black;
+    padding: 10px;
+    width: 175px;
+    background: white;
+    .card{
+      height: 220px;
+      width: 155px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url("../../assets/imgs/card-reverse.png");
+      background-position: center center;
+    }
+  }
 }
 
 .player-history{
+  position: relative;
+  width: 425px;
+  min-height: 110px;
+  background: green;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  .player-history-score{
+    position: absolute;
+    height: 110px;
+    width: 75px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 40px;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 1.2rem;
+    background: darkgreen;
+    color: lightgrey;
+    span{
+      font-weight: 700;
+    }
+  }
 
   .player-history-card{
     height: 80px;

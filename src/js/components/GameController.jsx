@@ -93,6 +93,12 @@ export default class GameController extends React.Component{
                 <Player getNextCard={this.getNextCard}
                         cardValues={this.state.cardValues}
                         heartsBackgrounds={this.state.heartsBackgrounds}
+                        id={1}
+                />
+                <Player getNextCard={this.getNextCard}
+                        cardValues={this.state.cardValues}
+                        heartsBackgrounds={this.state.heartsBackgrounds}
+                        id={2}
                 />
             </section>
         );
