@@ -88,18 +88,21 @@ export default class GameController extends React.Component{
     render(){
         return (
             <section className="board">
-                <h1>Game board</h1>
-                <button onClick={this.getNextCard}>TEST</button>
-                <Player getNextCard={this.getNextCard}
-                        cardValues={this.state.cardValues}
-                        heartsBackgrounds={this.state.heartsBackgrounds}
-                        id={1}
-                />
-                <Player getNextCard={this.getNextCard}
-                        cardValues={this.state.cardValues}
-                        heartsBackgrounds={this.state.heartsBackgrounds}
-                        id={2}
-                />
+                <div className="container">
+                    <h1>Game board</h1>
+                    <div className="board-players">
+                        <Player getNextCard={this.getNextCard}
+                                cardValues={this.state.cardValues}
+                                heartsBackgrounds={this.state.heartsBackgrounds}
+                                id={1}
+                        />
+                        <Player getNextCard={this.getNextCard}
+                                cardValues={this.state.cardValues}
+                                heartsBackgrounds={this.state.heartsBackgrounds}
+                                id={2}
+                        />
+                    </div>
+                </div>
             </section>
         );
     }

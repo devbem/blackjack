@@ -61,7 +61,11 @@ export default class Player extends React.Component{
                 <div className="player-card">
                     <div className="card" style={background}/>
                 </div>
-                <button onClick={this.getCard}>PLAYER</button>
+
+                <div className="player-draw">
+                    <button className="player-draw-button" onClick={this.getCard}>Draw a card</button>
+                </div>
+
             </div>
         );
     }

@@ -23,10 +23,10 @@ export default class PlayerHistory extends React.Component{
 
     setFlexDirection(){
         if(this.props.id===1){
-            this.setState({flexDirection : {flexDirection: "row-reverse", paddingRight: "75px"}});
+            this.setState({flexDirection : {flexDirection: "row-reverse", paddingRight: "110px"}});
             this.setState({scorePosition : {right: "0"}});
         }else if(this.props.id===2){
-            this.setState({flexDirection : {flexDirection: "row", paddingLeft: "75px"}});
+            this.setState({flexDirection : {flexDirection: "row", paddingLeft: "110px"}});
             this.setState({scorePosition : {left: "0"}});
         }
     }
