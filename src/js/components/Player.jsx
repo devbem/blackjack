@@ -20,6 +20,9 @@ export default class Player extends React.Component{
 
     componentWillReceiveProps(nextProps){
         this.determinePlayer(nextProps.turn);
+        if(nextProps.newGame===true){
+            this.resetPlayer();
+        }
     }
     getCard = e => {
         let card;
@@ -63,6 +66,15 @@ export default class Player extends React.Component{
             this.setState({playable : "disabled"});
         }
     };
+
+    resetPlayer(){
+        this.setState({
+            score: 0,
+            history: [],
+            currentCard: "",
+            background: "url('./assets/imgs/card-reverse.png')"
+        });
+    }
 
     updateBackground(card){
         this.setState({background : `url(${this.props.heartsBackgrounds[card]})`});

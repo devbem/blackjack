@@ -40,6 +40,8 @@ export default class GameController extends React.Component{
             player: Math.floor(Math.random()*2 +1),
             playerScore1: 0,
             playerScore2: 0,
+            gameMessage: "",
+            newGame: false,
         }
     }
 
@@ -48,10 +50,31 @@ export default class GameController extends React.Component{
     }
 
     // ======================= Initializing starting game state ==================
-    startGame(){
+    startGame= e=>{
         this.generateDeck(100);
+        this.initializePlayer();
+        this.initializeScores();
+        this.initializeMessage();
+        this.resetPlayers();
+    };
+
+    initializePlayer(){
+        this.setState({player :  Math.floor(Math.random()*2 +1)});
     }
 
+    initializeScores(){
+        this.setState({
+            playerScore1 : 0,
+            playerScore2: 0,
+        });
+    }
+
+    initializeMessage(){
+        this.setState({gameMessage : `Start the game: Player ${this.state.player}`});
+    }
+    resetPlayers(){
+        this.setState({newGame : true});
+    }
     generateDeck(count){
         const cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
         const deck = [];
@@ -60,7 +83,6 @@ export default class GameController extends React.Component{
             let index = Math.floor(Math.random() * 13);
             deck.push(cards[index]);
         }
-
         console.log(deck);
         this.setState({deck});
     }
@@ -68,13 +90,23 @@ export default class GameController extends React.Component{
 
     setTurn = e =>{
         const { player } = this.state;
-        player===1? this.setState({player : 2}) : this.setState({player : 1});
+        if(player===1) {
+            this.setState({
+                player : 2,
+                gameMessage: `Play now: Player 2`
+            });
+        } else{
+            this.setState({
+                player : 1,
+                gameMessage: `Play now: Player 1`
+            });
+        }
     };
 
     getNextCard = e =>{
         const deck = [...this.state.deck];
         const card = deck.pop();
-        this.setState({deck});
+        this.setState({deck, newGame: false});
         return card;
     };
 
@@ -88,8 +120,9 @@ export default class GameController extends React.Component{
             <section className="board">
                 <div className="container">
                     <h1>Game board</h1>
-                    <div className="board-turn">
-                        PLAY NOW: Player {this.state.player}
+                    <button onClick={this.startGame}>testnew</button>
+                    <div className="board-message">
+                        {this.state.gameMessage}
                     </div>
                     <div className="board-players">
 
@@ -100,6 +133,7 @@ export default class GameController extends React.Component{
                                 heartsBackgrounds={this.state.heartsBackgrounds}
                                 id={1}
                                 turn={this.state.player}
+                                newGame={this.state.newGame}
                         />
                         <Player getNextCard={this.getNextCard}
                                 nextTurn={this.setTurn}
@@ -108,6 +142,7 @@ export default class GameController extends React.Component{
                                 heartsBackgrounds={this.state.heartsBackgrounds}
                                 id={2}
                                 turn={this.state.player}
+                                newGame={this.state.newGame}
                         />
                     </div>
                 </div>
