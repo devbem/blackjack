@@ -1,4 +1,5 @@
 import React from 'react';
+import PlayerHistory from './PlayerHistory.jsx';
 
 export default class Player extends React.Component{
     constructor(props){
@@ -9,9 +10,12 @@ export default class Player extends React.Component{
             currentCard: "",
             history: [],
             background : "",
+            deck: "",
         }
     }
-    
+    componentDidMount(){
+        this.determineDeck();
+    }
     getCard = e => {
         let card;
         if(typeof this.props.getNextCard === "function"){
@@ -30,8 +34,18 @@ export default class Player extends React.Component{
         this.updateBackground(`${card}`);
     };
 
-    updateBackground(val){
-        this.setState({background : this.props.heartsBackgrounds[val]});
+    //Player id:1 plays with hearts deck, player id:2 plays with spades deck
+    determineDeck(){
+        if(this.props.id === 1){
+            this.setState({deck : this.props.heartsBackgrounds});
+        } else if(this.props.id === 2){
+           // this.setState({deck : this.props.spadesBackgrounds });
+            //TODO: create deck to initialize this
+        }
+    }
+    updateBackground(card){
+        this.setState({background : `url(${this.props.heartsBackgrounds[card]})`});
+        //TODO: change props.hearts... to this.state.deck, when deck initialized
     }
 
     render(){
@@ -39,6 +53,9 @@ export default class Player extends React.Component{
         return (
             <div className="player">
                 <button onClick={this.getCard}>PLAYER</button>
+                <PlayerHistory deck={this.props.heartsBackgrounds}
+                               history={this.state.history}
+                />
                 <h1>{this.state.currentCard}</h1>
                 <div className="player-card" style={style}/>
             </div>

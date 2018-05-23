@@ -1,3 +1,3 @@
-*{padding:0;margin:0;box-sizing:border-box}.container{max-width:1200px;height:auto;padding-left:10px;padding-right:10px;margin:0 auto}.main-background{width:100%;background:aliceblue}.board{width:100vw;height:100vh;min-height:100vh}
+*{padding:0;margin:0;box-sizing:border-box}.container{max-width:1200px;height:auto;padding-left:10px;padding-right:10px;margin:0 auto}.main-background{width:100%;background:aliceblue}.board{width:100vw;height:100vh;min-height:100vh}.player-history .player-history-card{height:80px;width:60px;margin:5px}
 
 /*# sourceMappingURL=style.min.css.map */

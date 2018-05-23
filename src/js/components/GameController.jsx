@@ -22,19 +22,19 @@ export default class GameController extends React.Component{
                 "A" : 11,
             },
             heartsBackgrounds : {
-                "2" : "url(./assets/imgs/2h.png)",
-                "3" : "url(./assets/imgs/3h.png)",
-                "4" : "url(./assets/imgs/4h.png)",
-                "5" : "url(./assets/imgs/5h.png)",
-                "6" : "url(./assets/imgs/6h.png)",
-                "7" : "url(./assets/imgs/7h.png)",
-                "8" : "url(./assets/imgs/8h.png)",
-                "9" : "url(./assets/imgs/9h.png)",
-                "10" : "url(./assets/imgs/10h.png)",
-                "J" : "url(./assets/imgs/Jh.png)",
-                "Q" : "url(./assets/imgs/Qh.png)",
-                "K" : "url(./assets/imgs/Kh.png)",
-                "A" : "url(./assets/imgs/Ah.png)",
+                "2" : "./assets/imgs/2h.png",
+                "3" : "./assets/imgs/3h.png",
+                "4" : "./assets/imgs/4h.png",
+                "5" : "./assets/imgs/5h.png",
+                "6" : "./assets/imgs/6h.png",
+                "7" : "./assets/imgs/7h.png",
+                "8" : "./assets/imgs/8h.png",
+                "9" : "./assets/imgs/9h.png",
+                "10" : "./assets/imgs/10h.png",
+                "J" : "./assets/imgs/Jh.png",
+                "Q" : "./assets/imgs/Qh.png",
+                "K" : "./assets/imgs/Kh.png",
+                "A" : "./assets/imgs/Ah.png",
             },
 
             player: 0,
@@ -75,6 +75,7 @@ export default class GameController extends React.Component{
     setTurn = e =>{
         const { player } = this.state;
         player===1? this.setState({player : 2}) : this.setState({player : 1});
+        //Wywolywac ta metode z gracza
     };
 
     getNextCard = e =>{
