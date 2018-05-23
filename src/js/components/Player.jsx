@@ -16,8 +16,8 @@ export default class Player extends React.Component{
     }
     componentDidMount(){
         this.determineDeck();
-        //this.determinePlayer(this.props.turn);
     }
+
     componentWillReceiveProps(nextProps){
         this.determinePlayer(nextProps.turn);
     }
@@ -28,18 +28,21 @@ export default class Player extends React.Component{
         }
 
         this.setState({currentCard : card});
-        const history = [...this.state.history];
+        this.updateBackground(`${card}`);
 
+        const history = [...this.state.history];
         history.push(card);
         this.setState({history});
 
         const value = this.props.cardValues[`${card}`];
-        this.setState({score : this.state.score + value});
-
-        this.updateBackground(`${card}`);
+        const currentScore = this.state.score + value;
+        this.setState({score : currentScore});
 
         if(typeof this.props.nextTurn === "function"){
             this.props.nextTurn();
+        }
+        if(typeof this.props.updateScore === "function"){
+            this.props.updateScore(this.state.id, currentScore);
         }
     };
 

@@ -38,6 +38,8 @@ export default class GameController extends React.Component{
             },
 
             player: Math.floor(Math.random()*2 +1),
+            playerScore1: 0,
+            playerScore2: 0,
         }
     }
 
@@ -47,14 +49,7 @@ export default class GameController extends React.Component{
 
     // ======================= Initializing starting game state ==================
     startGame(){
-        //this.initializePlayers();
         this.generateDeck(100);
-    }
-
-    initializePlayers(){
-        let player = Math.floor(Math.random()*2 +1);
-        console.log(player);
-        this.setState({player});
     }
 
     generateDeck(count){
@@ -74,7 +69,6 @@ export default class GameController extends React.Component{
     setTurn = e =>{
         const { player } = this.state;
         player===1? this.setState({player : 2}) : this.setState({player : 1});
-        //Wywolywac ta metode z gracza
     };
 
     getNextCard = e =>{
@@ -82,6 +76,11 @@ export default class GameController extends React.Component{
         const card = deck.pop();
         this.setState({deck});
         return card;
+    };
+
+    updateScore= (id, score) =>{
+        this.setState({[`playerScore${id}`] : score});
+        console.log("player ", id, " score: ", score);
     };
 
     render(){
@@ -96,6 +95,7 @@ export default class GameController extends React.Component{
 
                         <Player getNextCard={this.getNextCard}
                                 nextTurn={this.setTurn}
+                                updateScore={this.updateScore}
                                 cardValues={this.state.cardValues}
                                 heartsBackgrounds={this.state.heartsBackgrounds}
                                 id={1}
@@ -103,6 +103,7 @@ export default class GameController extends React.Component{
                         />
                         <Player getNextCard={this.getNextCard}
                                 nextTurn={this.setTurn}
+                                updateScore={this.updateScore}
                                 cardValues={this.state.cardValues}
                                 heartsBackgrounds={this.state.heartsBackgrounds}
                                 id={2}
