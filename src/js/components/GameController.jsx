@@ -37,18 +37,17 @@ export default class GameController extends React.Component{
                 "A" : "./assets/imgs/Ah.png",
             },
 
-            player: 0,
+            player: Math.floor(Math.random()*2 +1),
         }
     }
 
     componentDidMount(){
         this.startGame();
-        //this.getNextCard();
     }
 
     // ======================= Initializing starting game state ==================
     startGame(){
-        this.initializePlayers();
+        //this.initializePlayers();
         this.generateDeck(100);
     }
 
@@ -90,16 +89,24 @@ export default class GameController extends React.Component{
             <section className="board">
                 <div className="container">
                     <h1>Game board</h1>
+                    <div className="board-turn">
+                        PLAY NOW: Player {this.state.player}
+                    </div>
                     <div className="board-players">
+
                         <Player getNextCard={this.getNextCard}
+                                nextTurn={this.setTurn}
                                 cardValues={this.state.cardValues}
                                 heartsBackgrounds={this.state.heartsBackgrounds}
                                 id={1}
+                                turn={this.state.player}
                         />
                         <Player getNextCard={this.getNextCard}
+                                nextTurn={this.setTurn}
                                 cardValues={this.state.cardValues}
                                 heartsBackgrounds={this.state.heartsBackgrounds}
                                 id={2}
+                                turn={this.state.player}
                         />
                     </div>
                 </div>

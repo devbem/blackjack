@@ -11,10 +11,15 @@ export default class Player extends React.Component{
             history: [],
             background : "",
             deck: "",
+            playable: "disabled",
         }
     }
     componentDidMount(){
         this.determineDeck();
+        //this.determinePlayer(this.props.turn);
+    }
+    componentWillReceiveProps(nextProps){
+        this.determinePlayer(nextProps.turn);
     }
     getCard = e => {
         let card;
@@ -32,6 +37,10 @@ export default class Player extends React.Component{
         this.setState({score : this.state.score + value});
 
         this.updateBackground(`${card}`);
+
+        if(typeof this.props.nextTurn === "function"){
+            this.props.nextTurn();
+        }
     };
 
     //Player id:1 plays with hearts deck, player id:2 plays with spades deck
@@ -42,11 +51,20 @@ export default class Player extends React.Component{
            // this.setState({deck : this.props.spadesBackgrounds });
             //TODO: create deck to initialize this
         }
-    }
+    };
+
+    determinePlayer= turn =>{
+        if(turn === this.state.id){
+            this.setState({playable : ""});
+        }else{
+            this.setState({playable : "disabled"});
+        }
+    };
+
     updateBackground(card){
         this.setState({background : `url(${this.props.heartsBackgrounds[card]})`});
         //TODO: change props.hearts... to this.state.deck, when deck initialized
-    }
+    };
 
     render(){
         const background = {backgroundImage: this.state.background};
@@ -63,7 +81,10 @@ export default class Player extends React.Component{
                 </div>
 
                 <div className="player-draw">
-                    <button className="player-draw-button" onClick={this.getCard}>Draw a card</button>
+                    <button className="player-draw-button" onClick={this.getCard}
+                            disabled={this.state.playable}>
+                        Draw a card
+                    </button>
                 </div>
 
             </div>
