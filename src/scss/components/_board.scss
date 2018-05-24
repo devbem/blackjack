@@ -8,11 +8,60 @@
     flex-direction: column;
     align-items: center;
   }
+
+  .title{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-family: "Raleway", sans-serif;
+    font-size: 1.6rem;
+  }
+  .board-message{
+    width: 860px;
+    height: 80px;
+    background: #dcb24a;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+  }
   .board-players{
     width: 860px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     background: indianred;
+  }
+
+  .board-reset{
+    width: 860px;
+    height: 80px;
+    background: #dcb24a;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .board-reset-button{
+      margin-top: 15px;
+      margin-bottom: 15px;
+      padding: 15px 20px;
+      border: 1px solid black;
+      border-radius: 7px;
+      font-family: "Raleway", sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      background: white;
+      color: black;
+      cursor: pointer;
+      &:hover{
+        background: lightgrey;
+      }
+      &:focus{
+        outline: none;
+      }
+    }
   }
 }

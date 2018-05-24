@@ -43,6 +43,8 @@ export default class GameController extends React.Component{
             gameMessage: "",
             newGame: false,
             endGame: false,
+            resetButtonStyle: {opacity: "0", transition: "all 0.5s ease-out"},
+            resetButtonDisabled: "disabled",
         }
     }
 
@@ -56,6 +58,7 @@ export default class GameController extends React.Component{
         this.initializeScores();
         this.initializeMessage(this.initializePlayer());
         this.resetPlayers();
+        this.hideNewGameButton();
     };
 
     initializePlayer(){
@@ -79,6 +82,10 @@ export default class GameController extends React.Component{
             newGame : true,
             endGame: false,
         });
+    }
+    hideNewGameButton(){
+        this.setState({resetButtonStyle : {opacity: "0", transition: "all 0.5s ease-in"}});
+        this.setState({resetButtonDisabled: "disabled"});
     }
     generateDeck(count){
         const cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
@@ -128,10 +135,16 @@ export default class GameController extends React.Component{
 
     // ========================= GAME END ====================================
     endGame(playerId){
-       this.setState({
-           endGame: true,
-           gameMessage: `Player ${playerId} wins! Congratulations!`
-       });
+       this.setState({endGame: true,});
+       this.showNewGameButton();
+       this.endgameMessage(playerId);
+    }
+    endgameMessage(playerId){
+        this.setState({gameMessage : `Player ${playerId} wins! Congratulations!`});
+    }
+    showNewGameButton(){
+        this.setState({resetButtonDisabled: ""});
+        this.setState({resetButtonStyle : {opacity: "1", transition: "all 0.5s ease-out"}});
     }
     // =======================================================================
 
@@ -139,8 +152,8 @@ export default class GameController extends React.Component{
         return (
             <section className="board">
                 <div className="container">
-                    <h1>Game board</h1>
-                    <button onClick={this.startGame}>testnew</button>
+                    <h1 className="title">Simplified Blackjack</h1>
+
                     <div className="board-message">
                         {this.state.gameMessage}
                     </div>
@@ -166,6 +179,10 @@ export default class GameController extends React.Component{
                                 newGame={this.state.newGame}
                                 endGame={this.state.endGame}
                         />
+                    </div>
+                    <div className="board-reset" style={this.state.resetButtonStyle}>
+                        <button className="board-reset-button" disabled={this.state.resetButtonDisabled}
+                                onClick={this.startGame}>Start new game</button>
                     </div>
                 </div>
             </section>
