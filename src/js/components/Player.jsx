@@ -84,7 +84,7 @@ export default class Player extends React.Component{
 
     updateBackground(card){
         this.setState({background : `url(${this.props.heartsBackgrounds[card]})`});
-        //TODO: change props.hearts... to this.state.deck, when deck initialized
+        //TODO: change props.hearts... to this.state.deck, when spades deck is initialized
     };
 
     render(){

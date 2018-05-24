@@ -95,7 +95,6 @@ export default class GameController extends React.Component{
             let index = Math.floor(Math.random() * 13);
             deck.push(cards[index]);
         }
-        console.log(deck);
         this.setState({deck});
     }
     // ===========================================================================
@@ -128,7 +127,6 @@ export default class GameController extends React.Component{
             this.endGame(id);
         }
         this.setState({[`playerScore${id}`] : score});
-        console.log("player ", id, " score: ", score);
     };
 
     // =======================================================================
