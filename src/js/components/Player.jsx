@@ -23,6 +23,9 @@ export default class Player extends React.Component{
         if(nextProps.newGame===true){
             this.resetPlayer();
         }
+        if(nextProps.endGame===true){
+            this.endGame();
+        }
     }
     getCard = e => {
         let card;
@@ -67,6 +70,9 @@ export default class Player extends React.Component{
         }
     };
 
+    endGame(){
+        this.setState({playable : "disabled"});
+    }
     resetPlayer(){
         this.setState({
             score: 0,

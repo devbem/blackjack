@@ -42,6 +42,7 @@ export default class GameController extends React.Component{
             playerScore2: 0,
             gameMessage: "",
             newGame: false,
+            endGame: false,
         }
     }
 
@@ -49,7 +50,7 @@ export default class GameController extends React.Component{
         this.startGame();
     }
 
-    // ======================= Initializing starting game state ==================
+    // ======================= Initializing new game state ==================
     startGame= e=>{
         this.generateDeck(100);
         this.initializeScores();
@@ -74,7 +75,10 @@ export default class GameController extends React.Component{
         this.setState({gameMessage : `Start the game: Player ${player}`});
     }
     resetPlayers(){
-        this.setState({newGame : true});
+        this.setState({
+            newGame : true,
+            endGame: false,
+        });
     }
     generateDeck(count){
         const cards = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
@@ -89,6 +93,7 @@ export default class GameController extends React.Component{
     }
     // ===========================================================================
 
+    // ========================== Game logic =====================================
     setTurn = e =>{
         const { player } = this.state;
         if(player===1) {
@@ -112,9 +117,23 @@ export default class GameController extends React.Component{
     };
 
     updateScore= (id, score) =>{
+        if(score >= 21){
+            this.endGame(id);
+        }
         this.setState({[`playerScore${id}`] : score});
         console.log("player ", id, " score: ", score);
     };
+
+    // =======================================================================
+
+    // ========================= GAME END ====================================
+    endGame(playerId){
+       this.setState({
+           endGame: true,
+           gameMessage: `Player ${playerId} wins! Congratulations!`
+       });
+    }
+    // =======================================================================
 
     render(){
         return (
@@ -135,6 +154,7 @@ export default class GameController extends React.Component{
                                 id={1}
                                 turn={this.state.player}
                                 newGame={this.state.newGame}
+                                endGame={this.state.endGame}
                         />
                         <Player getNextCard={this.getNextCard}
                                 nextTurn={this.setTurn}
@@ -144,6 +164,7 @@ export default class GameController extends React.Component{
                                 id={2}
                                 turn={this.state.player}
                                 newGame={this.state.newGame}
+                                endGame={this.state.endGame}
                         />
                     </div>
                 </div>
